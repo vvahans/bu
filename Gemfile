@@ -17,6 +17,8 @@ gem "devise-jwt"
 
 gem 'prawn'
 
+gem 'whenever', require: false
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 

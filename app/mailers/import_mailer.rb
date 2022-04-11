@@ -7,7 +7,7 @@ class ImportMailer < ApplicationMailer
 
   def bikes_unlimited_mailer
     @imports_count = params[:imports_count]
-    @certified_riders_count = params[:certified_riders_count]
+    @total_riders_count = params[:total_riders_count]
     mail(to: 'owner@bikes-unlimited.io', subject: 'Nightly jobs summary')
   end
 end

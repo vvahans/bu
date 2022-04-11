@@ -2,8 +2,6 @@ require "csv"
 require "prawn"
 
 class ImportRidersService
-  attr_accessor :errors
-
   def initialize(import, certifier_name)
     @import_record = import
     @certifier_name = certifier_name
@@ -30,12 +28,17 @@ class ImportRidersService
       end
     end
 
-    @import_record.failed_records = failed_attempts
-    @import_record.total_records = parsed_file.size
-    @import_record.save!
+    save_import(@import_record, failed_attempts, parsed_file.size)
   end
 
   private
+
+  def save_import(import_record, failed_attempts, total_records)
+    import_record.failed_records = failed_attempts
+    import_record.total_records = total_records
+    import_record.imported_at = DateTime.now
+    import_record.save!
+  end
 
   def generate_certificate_for(rider)
     Prawn::Document.new(:page_size => 'A4', :top_margin => 30, :left_margin => 30) do |certificate|
