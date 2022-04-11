@@ -5,4 +5,5 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :certifier
+  has_many :imports
 end

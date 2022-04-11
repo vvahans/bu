@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_records: 1
+  failed_records: 1
+
+two:
+  total_records: 1
+  failed_records: 1
