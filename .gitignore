@@ -33,3 +33,6 @@
 /config/master.key
 
 .idea
+
+# Remove database.yml from git
+/config/database.yml

@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_04_11_132110) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,7 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_11_132110) do
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "certifier_id"
+    t.bigint "certifier_id"
     t.string "jti", null: false
     t.index ["certifier_id"], name: "index_admins_on_certifier_id"
     t.index ["email"], name: "index_admins_on_email", unique: true
@@ -68,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_11_132110) do
   create_table "imports", force: :cascade do |t|
     t.integer "total_records"
     t.integer "failed_records"
-    t.integer "admin_id"
+    t.bigint "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "imported_at"
@@ -82,7 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_11_132110) do
     t.datetime "certificate_send_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "import_id"
+    t.bigint "import_id"
     t.index ["import_id"], name: "index_riders_on_import_id"
   end
 
