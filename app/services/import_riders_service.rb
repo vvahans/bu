@@ -21,7 +21,7 @@ class ImportRidersService
         )
         rider.save!
 
-        CertificateMailer.with(rider: rider).certificate_email.deliver_later
+        CertificateMailer.with(rider: rider).certificate_email.deliver_now
       rescue => e
         failed_attempts += 1
         Rails.logger.warn(e.message)
@@ -47,5 +47,9 @@ class ImportRidersService
       certificate.text "Holder Name: #{rider.full_name}"
       certificate.text "Issue Date: #{rider.created_at.strftime('%m-%d-%Y')}"
     end.render
+  end
+
+  def parse
+
   end
 end

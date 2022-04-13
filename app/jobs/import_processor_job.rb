@@ -11,6 +11,6 @@ class ImportProcessorJob < ApplicationJob
     ImportMailer.with(
       imports_count: not_processed_imports.size,
       total_riders_count: not_processed_imports.reload.sum(:total_records)
-    ).bikes_unlimited_mailer.deliver_later
+    ).bikes_unlimited_mailer.deliver_now
   end
 end
