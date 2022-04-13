@@ -1,0 +1,19 @@
+{
+  "licences": [
+    {
+      "name": "John",
+      "surname": "Smith",
+      "email": "j.smith@test.com"
+    },
+    {
+      "name": "Margaret",
+      "surname": "Brady",
+      "email": "m.brady@test.com"
+    },
+    {
+      "name": "Tom",
+      "surname": "Hank",
+      "email": "t.hank@test.com"
+    }
+  ]
+}
