@@ -5,10 +5,11 @@ class ImportRidersService
   def initialize(import, certifier_name)
     @import_record = import
     @certifier_name = certifier_name
+    @import_file_content_type = import.file.content_type
   end
 
   def import
-    parsed_file = CSV.parse(@import_record.file.download, headers: true)
+    parsed_file = parse(@import_record.file.download, @import_file_content_type)
     failed_attempts = 0
 
     parsed_file.each do |record|
@@ -49,7 +50,22 @@ class ImportRidersService
     end.render
   end
 
-  def parse
+  def parse(file, content_type)
+    if content_type == 'application/csv'
+      parse_csv(file)
+    elsif content_type == 'application/json'
+      parse_json(file)
+    else
+      raise 'Unknown Content Type for Import file'
+    end
+  end
 
+  def parse_csv(file)
+    CSV.parse(file, headers: true)
+  end
+
+  def parse_json(file)
+    licences = JSON.parse(file)
+    licences["licences"].reduce([]){ |memo, rider| memo << [rider['name'], rider['surname'], rider['email']] }
   end
 end
