@@ -7,7 +7,7 @@ class Admin < ApplicationRecord
   belongs_to :certifier
   has_many :imports
 
-  validate :email, presence: true
+  validates :email, presence: true
 
   def jwt_payload
     super.merge('id' => id)
